@@ -4,9 +4,9 @@ This repository contains a simple `Hello world!` example in the [Rust][rust]
 programming language, that builds with [Cosmopolitan Libc][cosmo]. 
 
 I created a [custom compilation target][custom-target] for Rust, called
-`x86_64-unknown-linux-cosmo`, to provide a build process the Cosmopolitan Libc
-amalgamation and `cargo`. I followed the documentation in the [Rust
-Embedonomicon][custom-embed] to create the target.
+`x86_64-unknown-linux-cosmo`, to provide a build process that uses the
+Cosmopolitan Libc amalgamation and `cargo`. I followed the documentation in the
+[Rust Embedonomicon][custom-embed] to create the target.
 
 An alternative method to build APEs with Rust would be to avoid `cargo`, just
 use `rustc` or equivalent compiler to generate `.o` files, and then write a
@@ -24,11 +24,15 @@ unzip cosmopolitan.zip
 cd ../
 ```
 
-2. Download the necessary toolchain(s) and source code for Rust:
+2. Download the necessary *host* toolchain and source code for Rust:
 
 ```bash
+# I was on Debian, so I did this
 rustup toolchain install nightly-x86_64-unknown-linux-gnu
 rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
+# on Alpine Linux, you may need to do
+rustup toolchain install nightly-x86_64-unknown-linux-musl
+rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-musl
 ```
 
 3. run `cargo build` to get the debug executable. This uses a bash script that
@@ -54,8 +58,8 @@ that can be tested:
    function and `#![restricted_std]`.
 
 2. In the source code for Rust's `std` crate, change a `cfg_if` in
-   `$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/backtrace/src/backtrace/mod.rs`
-   to not use the `noop` trace instead of depending on `libunwind`. 
+   `$HOME/.rustup/toolchains/<your-host-nightly-toolchain>/lib/rustlib/src/rust/library/backtrace/src/backtrace/mod.rs`
+   to use the `noop` trace instead of depending on `libunwind`. 
 
 ```diff
 --- mod.rs	2022-06-21 12:52:21.724053459 +0530
