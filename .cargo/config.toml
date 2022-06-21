@@ -1,0 +1,7 @@
+[profile.dev]
+panic = "abort"
+opt-level = "s"
+
+[profile.release]
+panic = "abort"
+opt-level = "s"
