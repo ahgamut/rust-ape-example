@@ -1,0 +1,62 @@
+{
+  "llvm-target": "x86_64-unknown-linux-musl",
+  "target-pointer-width": "64",
+  "arch": "x86_64",
+  "data-layout": "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128",
+  "cpu": "x86-64",
+  "os":"linux",
+  "env": "musl",
+  "panic-strategy":"abort",
+  "requires-uwtable":false,
+  "dynamic-linking": false,
+  "executables": true,
+  "exe-suffix": ".com.dbg",
+  "emit-debug-gdb-scripts":false,
+  "crt-static-default": true,
+  "crt-static-respected": false,
+  "linker-is-gnu":true,
+  "allows-weak-linkage":true,
+  "has-rpath": false,
+  "has-thread-local": false,
+  "is-builtin": false,
+  "trap-unreachable":true,
+  "position-independent-executables": false,
+  "static-position-independent-executables": false,
+  "relocation-model": "static",
+  "disable-redzone":true,
+  "frame-pointer":"always",
+  "requires-lto":false,
+  "eh-frame-header":false,
+  "no-default-libraries":true,
+  "max-atomic-width":64,
+  "linker-flavor":"gcc",
+  "linker": "./gcc-linker-wrapper.bash",
+  "late-link-args": {
+      "gcc": []
+  },
+  "pre-link-args": {
+      "gcc": [
+          "-static",
+          "-nostdinc",
+          "-nostdlib",
+          "-pg",
+          "-mnop-mcount"
+      ]
+  },
+  "post-link-args": {
+      "gcc": [
+          "-Wl,--gc-sections",
+          "-fuse-ld=bfd",
+          "-Wl,-T,./libcosmo/ape.lds",
+          "./libcosmo/crt.o",
+          "./libcosmo/ape-no-modify-self.o",
+          "./libcosmo/cosmopolitan.a"
+      ]
+  },
+  "stack-probes": {
+    "kind": "none"
+  },
+  "target-family": [
+    "unix"
+  ]
+}
