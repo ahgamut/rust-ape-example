@@ -1,3 +1,4 @@
+/*
 #![no_main]
 #![no_std]
 #![feature(rustc_private)]
@@ -20,12 +21,10 @@ pub extern "C" fn main(_argc: isize, _argv: *const *const u8) -> isize {
 fn my_panic(_info: &core::panic::PanicInfo) -> ! {
     loop {}
 }
-
-/* std crate requires some external changes
+*/
 
 #![feature(restricted_std)]
 
 pub fn main() {
     println!("hello pls cosmo rust APE");
 }
-*/
