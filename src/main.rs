@@ -26,5 +26,5 @@ fn my_panic(_info: &core::panic::PanicInfo) -> ! {
 #![feature(restricted_std)]
 
 pub fn main() {
-    println!("hello pls cosmo rust APE");
+    println!("Hello World! This is an APE built with Rust.");
 }

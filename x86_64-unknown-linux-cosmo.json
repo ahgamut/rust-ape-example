@@ -49,7 +49,6 @@
           "-fuse-ld=bfd",
           "-Wl,-T,./libcosmo/ape.lds",
           "./libcosmo/crt.o",
-          "./libcosmo/stubs.o",
           "./libcosmo/ape-no-modify-self.o",
           "./libcosmo/cosmopolitan.a"
       ]
