@@ -13,9 +13,6 @@ use `rustc` or equivalent compiler to generate `.o` files, and then write a
 shell script that does the linking with the expected flags. I have not tried
 this method.
 
-> a previous attempt at a Rust APE was done without using the `std` crate. You
-can view that in the [`without-std` branch of this repo][without-std-branch].
-
 ## Building a Rust APE with the `std` crate
 
 1. Download the Cosmopolitan Libc [amalgamation][amalg-download] into the `libcosmo` folder:
@@ -52,7 +49,7 @@ For reference, this worked when I tried it for `nightly-x86_64-linux-gnu` and:
    is required.
 
 ```bash
-cargo +nightly build -Zbuild-std=panic_abort,std -Zbuild-std-features=""  --target=./x86_64-unknown-linux-cosmo.json
+cargo +nightly build -Zbuild-std=libc,panic_abort,std -Zbuild-std-features=""  --target=./x86_64-unknown-linux-cosmo.json
 ```
 
 For reference, I used the below versions of `gcc` and `ld.bfd`
@@ -81,11 +78,13 @@ objcopy -SO binary ./target/x86_64-unknown-linux-cosmo/debug/hello_world.com.dbg
 ./hello_world.com
 # see syscalls made by the APE
 ./hello_world.com --strace
+# ls ./target/x86_64-unknown-linux-cosmo/debug/*.com.dbg
 ```
 
-Now we have an Actually Portable Executable built with Rust! There might some
-edge cases that I haven't noticed, so clone/fork the repo and try it out!  The
-[`without-std` branch][without-std-branch] of this repo might be useful.
+Now we have Actually Portable Executables built with Rust! I also built a few
+more executables using the code from [Rust By Example][rbe], and an APE that
+doesn't use the `std` crate. There might some edge cases that I haven't noticed,
+so clone/fork the repo and try it out!
 
 ## TODOs
 
@@ -108,6 +107,7 @@ build command.
 
 [without-std-branch]: https://github.com/ahgamut/rust-ape-example/tree/without-std
 [rust]: https://rust-lang.org
+[rbe]: https://doc.rust-lang.org/rust-by-example/
 [cosmo]: https://github.com/jart/cosmopolitan
 [cosmo-nightly]: https://github.com/jart/cosmopolitan/commit/893cc06fc2ca7f84bc2238566f29d10d32999725
 [amalg-download]: https://justine.lol/cosmopolitan/download.html
