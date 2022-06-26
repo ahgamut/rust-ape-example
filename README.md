@@ -27,7 +27,7 @@ unzip cosmopolitan.zip
 cd ../
 ```
 
-For reference, I used the nightly version of `cosmopolitan.a` from June 22 2022,
+For reference, I used the nightly version of `cosmopolitan.a` from June 26 2022,
 which can be built from source if needed from [this commit][cosmo-nightly].
 
 2. Download the necessary host toolchain and source code for Rust:
@@ -41,7 +41,11 @@ rustup toolchain install nightly-x86_64-unknown-linux-musl
 rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-musl
 ```
 
-For reference, I used the nightly version of Rust from June 22 2022.
+For reference, this worked when I tried it for `nightly-x86_64-linux-gnu` and:
+
+* the Rust binaries on June 22 2022 (5750a6aa2 2022-06-20)
+* the Rust binaries on June 25 2022 (fdca237d5 2022-06-24)
+* the Rust binaries on June 26 2022 (20a6f3a8a 2022-06-25)
 
 3. run `cargo build` to get the debug executable. This uses a bash script that
    removes unnecessary linker arguments. A recent version of `gcc` and `ld.bfd`
@@ -105,7 +109,7 @@ build command.
 [without-std-branch]: https://github.com/ahgamut/rust-ape-example/tree/without-std
 [rust]: https://rust-lang.org
 [cosmo]: https://github.com/jart/cosmopolitan
-[cosmo-nightly]: https://github.com/jart/cosmopolitan
+[cosmo-nightly]: https://github.com/jart/cosmopolitan/commit/893cc06fc2ca7f84bc2238566f29d10d32999725
 [amalg-download]: https://justine.lol/cosmopolitan/download.html
 [custom-target]: https://doc.rust-lang.org/rustc/targets/custom.html
 [custom-embed]: https://docs.rust-embedded.org/embedonomicon/custom-target.html
