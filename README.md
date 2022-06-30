@@ -1,7 +1,10 @@
 # Actually Portable Executables with Cosmopolitan Libc and Rust
 
 This repository contains a simple `Hello world!` example in the [Rust][rust]
-programming language, that builds with [Cosmopolitan Libc][cosmo]. 
+programming language, that builds with [Cosmopolitan Libc][cosmo]. To build it
+you need a recent version of `gcc` (9 or 10 ought to be good), a recent version
+of `binutils` (`ld.bfd` and `objcopy`), and `bash` because I wrote a simple
+filter script.
 
 I created a [custom compilation target][custom-target] for Rust, called
 `x86_64-unknown-linux-cosmo`, to provide a build process that uses the
@@ -43,6 +46,8 @@ For reference, this worked when I tried it for `nightly-x86_64-linux-gnu` and:
 * the Rust binaries on June 22 2022 (5750a6aa2 2022-06-20)
 * the Rust binaries on June 25 2022 (fdca237d5 2022-06-24)
 * the Rust binaries on June 26 2022 (20a6f3a8a 2022-06-25)
+* the Rust binaries on June 30 2022 (ddcbba036 2022-06-29)
+* the Rust binaries on July 27 2022 (4d6d601c8 2022-07-26)
 
 3. run `cargo build` to get the debug executable. This uses a bash script that
    removes unnecessary linker arguments. A recent version of `gcc` and `ld.bfd`
@@ -72,13 +77,14 @@ This program has absolutely no warranty.
 4. run `objcopy` on the debug binary to obtain the APE:
 
 ```bash
+# look at the built debug binaries
+ls ./target/x86_64-unknown-linux-cosmo/debug/*.com.dbg
 # objcopy is the same version as ld.bfd above
 objcopy -SO binary ./target/x86_64-unknown-linux-cosmo/debug/hello_world.com.dbg ./hello_world.com
 # run the APE
 ./hello_world.com
 # see syscalls made by the APE
 ./hello_world.com --strace
-# ls ./target/x86_64-unknown-linux-cosmo/debug/*.com.dbg
 ```
 
 Now we have Actually Portable Executables built with Rust! I also built a few
