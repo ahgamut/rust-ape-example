@@ -1,10 +1,16 @@
 # Actually Portable Executables with Cosmopolitan Libc and Rust
 
 This repository contains a simple `Hello world!` example in the [Rust][rust]
-programming language, that builds with [Cosmopolitan Libc][cosmo]. To build it
-you need a recent version of `gcc` (9 or 10 ought to be good), a recent version
-of `binutils` (`ld.bfd` and `objcopy`), and `bash` because I wrote a simple
-filter script.
+programming language, that builds with [Cosmopolitan Libc][cosmo]. Now it also
+includes all the example snippets I could scrape from [Rust By Example][rbe],
+and it builds around 175 debug executables.
+
+> Note: a few of the examples have been commented out. They will be added soon.
+
+
+To build this repo you need a recent version of `gcc` (9 or 10 ought to be
+good), a recent version of `binutils` (`ld.bfd` and `objcopy`), and `bash`
+because I wrote a simple filter script.
 
 I created a [custom compilation target][custom-target] for Rust, called
 `x86_64-unknown-linux-cosmo`, to provide a build process that uses the
