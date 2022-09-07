@@ -48,6 +48,7 @@ For reference, this worked when I tried it for `nightly-x86_64-linux-gnu` and:
 * the Rust binaries on June 26 2022 (20a6f3a8a 2022-06-25)
 * the Rust binaries on June 30 2022 (ddcbba036 2022-06-29)
 * the Rust binaries on July 27 2022 (4d6d601c8 2022-07-26)
+* the Rust binaries on September 6 2022 (78a891d36 2022-09-06)
 
 3. run `cargo build` to get the debug executable. This uses a bash script that
    removes unnecessary linker arguments. A recent version of `gcc` and `ld.bfd`
