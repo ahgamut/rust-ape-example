@@ -2,7 +2,7 @@
 
 
 use std::process::Command;
-
+/*
 fn part0() {
     let output = Command::new("rustc")
         .arg("--version")
@@ -19,9 +19,9 @@ fn part0() {
 
         print!("rustc failed and stderr was:\n{}", s);
     }
-}
+}*/
 
 pub fn main() {
-	part0();
+	// part0();
 }
 
