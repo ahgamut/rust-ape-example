@@ -15,7 +15,7 @@ fn part0() {
     // End of the block
 
     // Error! `short_lived_binding` doesn't exist in this scope
-    println!("outer short: {}", short_lived_binding);
+    // println!("outer short: {}", short_lived_binding);
     // FIXME ^ Comment out this line
 
     println!("outer long: {}", long_lived_binding);

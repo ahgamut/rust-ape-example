@@ -1,6 +1,6 @@
 // ./src/std_misc/threads/testcase_mapreduce.md
 
-
+/*
 use std::thread;
 
 // This is the `main` thread
@@ -92,10 +92,10 @@ fn part0() {
 
     println!("Final sum result: {}", final_result);
 }
-
+*/
 
 
 pub fn main() {
-	part0();
+	// part0();
 }
 
