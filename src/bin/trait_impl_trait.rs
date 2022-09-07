@@ -15,6 +15,7 @@ fn parse_csv_document<R: std::io::BufRead>(src: R) -> std::io::Result<Vec<Vec<St
         .collect() // Collect all lines into a Vec<Vec<String>>
 }
 
+/*
 fn parse_csv_document(src: impl std::io::BufRead) -> std::io::Result<Vec<Vec<String>>> {
     src.lines()
         .map(|line| {
@@ -27,7 +28,7 @@ fn parse_csv_document(src: impl std::io::BufRead) -> std::io::Result<Vec<Vec<Str
             })
         })
         .collect() // Collect all lines into a Vec<Vec<String>>
-}
+} */
 
 use std::iter;
 use std::vec::IntoIter;

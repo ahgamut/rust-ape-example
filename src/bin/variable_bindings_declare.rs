@@ -17,7 +17,7 @@ fn part0() {
     let another_binding;
 
     // Error! Use of uninitialized binding
-    println!("another binding: {}", another_binding);
+    // println!("another binding: {}", another_binding);
     // FIXME ^ Comment out this line
 
     another_binding = 1;

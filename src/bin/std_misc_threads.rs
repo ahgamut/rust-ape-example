@@ -1,6 +1,6 @@
 // ./src/std_misc/threads.md
 
-
+/*
 use std::thread;
 
 const NTHREADS: u32 = 10;
@@ -21,9 +21,9 @@ fn part0() {
         // Wait for the thread to finish. Returns a result.
         let _ = child.join();
     }
-}
+} */
 
 pub fn main() {
-	part0();
+	// part0();
 }
 

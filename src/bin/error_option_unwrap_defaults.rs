@@ -20,8 +20,6 @@ fn part0() {
     // TODO: uncomment the line above to see the compiler error
  }
 
-#[derive(Debug)] 
-enum Fruit { Apple, Orange, Banana, Kiwi, Lemon }
 
 fn part1() {
     let apple = Some(Fruit::Apple);
@@ -43,8 +41,6 @@ fn part1() {
     // first_available_fruit: Some(Kiwi)
 }
 
-#[derive(Debug)] 
-enum Fruit { Apple, Orange, Banana, Kiwi, Lemon }
 
 fn part2() {
     let mut my_fruit: Option<Fruit> = None;
@@ -58,8 +54,6 @@ fn part2() {
     // TODO: uncomment the line above to see the compiler error
 }
 
-#[derive(Debug)] 
-enum Fruit { Apple, Orange, Banana, Kiwi, Lemon }
 
 fn part3() {
     let mut my_fruit: Option<Fruit> = None;

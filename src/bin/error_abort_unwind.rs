@@ -1,7 +1,7 @@
 // ./src/error/abort_unwind.md
 
 
-
+/*
 fn drink(beverage: &str) {
    // You shouldn't drink too much sugary beverages.
     if beverage == "lemonade" {
@@ -15,7 +15,7 @@ fn part0() {
     drink("water");
     drink("lemonade");
 }
-
+*/
 
 #[cfg(panic = "unwind")]
 fn ah(){ println!("Spit it out!!!!");}
@@ -34,7 +34,7 @@ fn part1() {
 }
 
 pub fn main() {
-	part0();
+	// part0();
 	part1();
 }
 

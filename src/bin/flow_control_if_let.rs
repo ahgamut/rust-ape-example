@@ -37,7 +37,7 @@ fn part0() {
 }
 
 // Our example enum
-enum Foo {
+enum Foo1 {
     Bar,
     Baz,
     Qux(u32)
@@ -45,42 +45,42 @@ enum Foo {
 
 fn part1() {
     // Create example variables
-    let a = Foo::Bar;
-    let b = Foo::Baz;
-    let c = Foo::Qux(100);
+    let a = Foo1::Bar;
+    let b = Foo1::Baz;
+    let c = Foo1::Qux(100);
     
     // Variable a matches Foo::Bar
-    if let Foo::Bar = a {
+    if let Foo1::Bar = a {
         println!("a is foobar");
     }
     
     // Variable b does not match Foo::Bar
     // So this will print nothing
-    if let Foo::Bar = b {
+    if let Foo1::Bar = b {
         println!("b is foobar");
     }
     
     // Variable c matches Foo::Qux which has a value
     // Similar to Some() in the previous example
-    if let Foo::Qux(value) = c {
+    if let Foo1::Qux(value) = c {
         println!("c is {}", value);
     }
 
     // Binding also works with `if let`
-    if let Foo::Qux(value @ 100) = c {
+    if let Foo1::Qux(value @ 100) = c {
         println!("c is one hundred");
     }
 }
 
 // This enum purposely neither implements nor derives PartialEq.
 // That is why comparing Foo::Bar == a fails below.
-enum Foo {Bar}
+enum Foo2 {Bar}
 
 fn part2() {
-    let a = Foo::Bar;
+    let a = Foo2::Bar;
 
     // Variable a matches Foo::Bar
-    if Foo::Bar == a {
+    if let Foo2::Bar = a {
     // ^-- this causes a compile-time error. Use `if let` instead.
         println!("a is foobar");
     }

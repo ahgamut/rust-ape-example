@@ -23,16 +23,6 @@ fn part0() {
     // Error 2: the element doesn't parse to a number
 }
 
-use std::num::ParseIntError;
-
-fn double_first(vec: Vec<&str>) -> Result<Option<i32>, ParseIntError> {
-    let opt = vec.first().map(|first| {
-        first.parse::<i32>().map(|n| 2 * n)
-    });
-
-    opt.map_or(Ok(None), |r| r.map(Some))
-}
-
 fn part1() {
     let numbers = vec!["42", "93", "18"];
     let empty = vec![];

@@ -1,6 +1,6 @@
 // ./src/meta/doc.md
 
-
+/*
 #![crate_name = "doc"]
 
 /// A human being is represented here
@@ -47,8 +47,9 @@ fn part0() {
 // Example from the futures-rs library
 #[doc(hidden)]
 pub use self::async_await::*;
+*/
 
 pub fn main() {
-	part0();
+	// part0();
 }
 

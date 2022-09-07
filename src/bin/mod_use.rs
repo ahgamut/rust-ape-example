@@ -1,6 +1,6 @@
 // ./src/mod/use.md
 
-
+/*
 use crate::deeply::nested::{
     my_first_function,
     my_second_function,
@@ -44,10 +44,10 @@ fn part1() {
     }
 
     function();
-}
+}*/
 
 pub fn main() {
-	part0();
-	part1();
+	// part0();
+	// part1();
 }
 

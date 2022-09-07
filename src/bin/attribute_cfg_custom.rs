@@ -1,7 +1,7 @@
 // ./src/attribute/cfg/custom.md
 
-
-#[cfg(some_condition)]
+/*
+#[cfg(some_condition)]*/
 fn conditional_function() {
     println!("condition met!");
 }
