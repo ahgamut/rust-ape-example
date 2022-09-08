@@ -1,6 +1,5 @@
 // ./src/std/hash/alt_key_types.md
 
-/*
 use std::collections::HashMap;
 
 // Eq requires that you derive PartialEq on the type.
@@ -56,9 +55,9 @@ fn part0(){
     try_logon(&accounts, "j.everyman", "psasword123");
 
     try_logon(&accounts, "j.everyman", "password123");
-}*/
+}
 
 pub fn main() {
-	// part0();
+	part0();
 }
 

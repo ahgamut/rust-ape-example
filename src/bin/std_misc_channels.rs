@@ -1,6 +1,5 @@
 // ./src/std_misc/channels.md
 
-/*
 use std::sync::mpsc::{Sender, Receiver};
 use std::sync::mpsc;
 use std::thread;
@@ -48,9 +47,8 @@ fn part0() {
     // Show the order in which the messages were sent
     println!("{:?}", ids);
 }
-*/
 
 pub fn main() {
-	// part0();
+	part0();
 }
 

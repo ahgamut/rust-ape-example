@@ -1,6 +1,5 @@
 // ./src/std/arc.md
 
-/*
 use std::time::Duration;
 use std::sync::Arc;
 use std::thread;
@@ -24,9 +23,8 @@ fn part0() {
     // Make sure all Arc instances are printed from spawned threads.
     thread::sleep(Duration::from_secs(1));
 }
-*/
 
 pub fn main() {
-	// part0();
+	part0();
 }
 
