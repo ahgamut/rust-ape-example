@@ -3,9 +3,11 @@
 This repository contains a simple `Hello world!` example in the [Rust][rust]
 programming language, that builds with [Cosmopolitan Libc][cosmo]. Now it also
 includes all the example snippets I could scrape from [Rust By Example][rbe],
-and it builds around 175 debug executables.
+and it builds around 175 example programs, including those that use Rust's
+`std::thread` and `std::sync::Arc`.
 
-> Note: a few of the examples have been commented out. They will be added soon.
+> `ripgrep` builds with Cosmopolitan Libc -- check it out
+> [here](https://github.com/ahgamut/ripgrep/tree/cosmopolitan).
 
 
 To build this repo you need a recent version of `gcc` (9 or 10 ought to be
@@ -33,8 +35,8 @@ unzip cosmopolitan.zip
 cd ../
 ```
 
-For reference, I used the nightly version of `cosmopolitan.a` from June 26 2022,
-which can be built from source if needed from [this commit][cosmo-nightly].
+For reference, I used the nightly version of `cosmopolitan.a` from September 12
+2022, which can be built from source if needed from [this commit][cosmo-nightly].
 
 2. Download the necessary host toolchain and source code for Rust:
 
@@ -122,7 +124,7 @@ build command.
 [rust]: https://rust-lang.org
 [rbe]: https://doc.rust-lang.org/rust-by-example/
 [cosmo]: https://github.com/jart/cosmopolitan
-[cosmo-nightly]: https://github.com/jart/cosmopolitan/commit/893cc06fc2ca7f84bc2238566f29d10d32999725
+[cosmo-nightly]: https://github.com/jart/cosmopolitan/commit/b69f3d2488dbaf9dcc541e699f5b7c09fbf046e0
 [amalg-download]: https://justine.lol/cosmopolitan/download.html
 [custom-target]: https://doc.rust-lang.org/rustc/targets/custom.html
 [custom-embed]: https://docs.rust-embedded.org/embedonomicon/custom-target.html
