@@ -34,6 +34,9 @@ make -j MODE= toolchain
 make -j MODE=aarch64 toolchain
 export COSMO=$(realpath ./)
 cd ..
+mkdir cosmos
+export COSMOS=$(realpath ./cosmos)
+$COSMO/bin/cosmocc --update
 ```
 
 Then clone this repo
@@ -74,6 +77,7 @@ cargo +nightly build --target=./aarch64-unknown-linux-cosmo.json
 ```bash
 # look at the built debug binaries
 ls ./target/x86_64-unknown-linux-cosmo/debug/*.com.dbg
+ls ./target/aarch64-unknown-linux-cosmo/debug/*.com.dbg
 
 # apelink
 MODE=
@@ -92,8 +96,8 @@ apelinkpls () {
 }
 
 apelinkpls ./hello.com\
-    ./target/x86_64-unknown-linux-cosmo/debug/hello_world.com.dbg\
-    ./target/aarch64-unknown-linux-cosmo/debug/hello_world.com.dbg
+    ./target/x86_64-unknown-linux-cosmo/debug/hello.com.dbg\
+    ./target/aarch64-unknown-linux-cosmo/debug/hello.com.dbg
 
 # run the APE
 ./hello.com
