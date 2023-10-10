@@ -1,9 +1,8 @@
 {
-  "llvm-target": "x86_64-unknown-linux-musl",
+  "llvm-target": "aarch64-unknown-linux-musl",
   "target-pointer-width": "64",
-  "arch": "x86_64",
-  "data-layout": "e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128",
-  "cpu": "x86-64",
+  "arch": "aarch64",
+  "data-layout": "e-m:e-i8:8:32-i16:16:32-i64:64-i128:128-n32:64-S128",
   "os":"linux",
   "env": "musl",
   "panic-strategy":"abort",
@@ -36,9 +35,7 @@
   },
   "pre-link-args": {
       "gcc": [
-          "-static",
-          "-pg",
-          "-mnop-mcount"
+          "-static"
       ]
   },
   "post-link-args": {

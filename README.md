@@ -10,9 +10,8 @@ and it builds around 175 example programs, including those that use Rust's
 > [here](https://github.com/ahgamut/ripgrep/tree/cosmopolitan).
 
 
-To build this repo you need a recent version of `gcc` (9 or 10 ought to be
-good), a recent version of `binutils` (`ld.bfd` and `objcopy`), and `bash`
-because I wrote a simple filter script.
+To build this repo you need a recent version of the Cosmopolitan Libc monorepo,
+and `bash` because I wrote a simple filter script.
 
 I created a [custom compilation target][custom-target] for Rust, called
 `x86_64-unknown-linux-cosmo`, to provide a build process that uses the
@@ -26,17 +25,23 @@ this method.
 
 ## Building a Rust APE with the `std` crate
 
-1. Download the Cosmopolitan Libc [amalgamation][amalg-download] into the `libcosmo` folder:
+1. Download the Cosmopolitan Libc repo and build the toolchain:
 
 ```bash
-cd libcosmo
-wget https://justine.lol/cosmopolitan/cosmopolitan.zip
-unzip cosmopolitan.zip
-cd ../
+git clone https://github.com/jart/cosmopolitan
+cd cosmopolitan
+make -j MODE= toolchain
+make -j MODE=aarch64 toolchain
+export COSMO=$(realpath ./)
+cd ..
 ```
 
-For reference, I used the nightly version of `cosmopolitan.a` from September 12
-2022, which can be built from source if needed from [this commit][cosmo-nightly].
+Then clone this repo
+
+```bash
+git clone https://github.com/ahgamut/rust-ape-example
+cd rust-ape-example
+```
 
 2. Download the necessary host toolchain and source code for Rust:
 
@@ -51,49 +56,47 @@ rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-musl
 
 For reference, this worked when I tried it for `nightly-x86_64-linux-gnu` and:
 
-* the Rust binaries on June 22 2022 (5750a6aa2 2022-06-20)
-* the Rust binaries on June 25 2022 (fdca237d5 2022-06-24)
-* the Rust binaries on June 26 2022 (20a6f3a8a 2022-06-25)
-* the Rust binaries on June 30 2022 (ddcbba036 2022-06-29)
-* the Rust binaries on July 27 2022 (4d6d601c8 2022-07-26)
-* the Rust binaries on September 6 2022 (78a891d36 2022-09-06)
+* the Rust binaries on October 10 2023
 
-3. run `cargo build` to get the debug executable. This uses a bash script that
-   removes unnecessary linker arguments. A recent version of `gcc` and `ld.bfd`
-   is required.
+3. run `cargo build` to get the debug executables. This uses a bash script that
+   removes unnecessary linker arguments.
 
 ```bash
-cargo +nightly build -Zbuild-std=libc,panic_abort,std -Zbuild-std-features=""  --target=./x86_64-unknown-linux-cosmo.json
+export ARCH=x86_64
+cargo +nightly build --target=./x86_64-unknown-linux-cosmo.json
+export ARCH=aarch64
+cargo +nightly build --target=./aarch64-unknown-linux-cosmo.json
 ```
 
-For reference, I used the below versions of `gcc` and `ld.bfd`
 
-```
-gcc (Debian 10.2.1-6) 10.2.1 20210110
-Copyright (C) 2020 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-```
-
-```
-GNU ld (GNU Binutils for Debian) 2.35.2
-Copyright (C) 2020 Free Software Foundation, Inc.
-This program is free software; you may redistribute it under the terms of
-the GNU General Public License version 3 or (at your option) a later version.
-This program has absolutely no warranty.
-```
-
-4. run `objcopy` on the debug binary to obtain the APE:
+4. run `apelink` on the debug binaries to obtain the fat APE:
 
 ```bash
 # look at the built debug binaries
 ls ./target/x86_64-unknown-linux-cosmo/debug/*.com.dbg
-# objcopy is the same version as ld.bfd above
-objcopy -SO binary ./target/x86_64-unknown-linux-cosmo/debug/hello_world.com.dbg ./hello_world.com
+
+# apelink
+MODE=
+MODE_AARCH64=aarch64
+APELINK=$COSMO/o/tool/build/apelink.com
+apelinkpls () {
+    OUTPUT="$1"
+    OUTPUT_X86_64="$2"
+    OUTPUT_AARCH64="$3"
+    "$APELINK" -l "$COSMO/o/$MODE/ape/ape.elf" \
+        -l "$COSMO/o/$MODE_AARCH64/ape/ape.elf" \
+        -M "$COSMO/ape/ape-m1.c" \
+        -o "$OUTPUT" \
+        "$OUTPUT_X86_64" \
+        "$OUTPUT_AARCH64"
+}
+
+apelinkpls ./hello.com\
+    ./target/x86_64-unknown-linux-cosmo/debug/hello_world.com.dbg\
+    ./target/aarch64-unknown-linux-cosmo/debug/hello_world.com.dbg
+
 # run the APE
-./hello_world.com
-# see syscalls made by the APE
-./hello_world.com --strace
+./hello.com
 ```
 
 Now we have Actually Portable Executables built with Rust! I also built a few
