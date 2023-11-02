@@ -1,4 +1,14 @@
-# Actually Portable Executables with Cosmopolitan Libc and Rust
+# Cosmopolitan Libc and Rust
+
+> Note: the executables built using Cosmo and Rust do not work across the
+> operating systems supported by Cosmopolitan Libc, because Rust decides system
+> constants like `EINVAL` [at
+> compile-time](https://github.com/search?q=repo%3Arust-lang%2Flibc%20EINVAL&type=code),
+> based on the operating system provided in the compilation target. Thus, I
+> expect the fat binaries built here will only work on `x86-64-linux` and
+> `aarch64-linux`. Very well, perhaps in the future we can find a way to have
+> system constants as `extern` values in Rust, like how [I did it for
+> C](https://github.com/ahgamut/gcc/tree/portcosmo-11.2).
 
 This repository contains a simple `Hello world!` example in the [Rust][rust]
 programming language, that builds with [Cosmopolitan Libc][cosmo]. Now it also
